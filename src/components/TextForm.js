@@ -34,7 +34,13 @@ const handleClearText=()=>{
   setText(event.target.value)//add the text in text area 
  }
  
-
+ function textToSpeech(){
+  const Speech= new SpeechSynthesisUtterance();
+  const message= document.getElementById("myBox").value;
+  Speech.lang='eng';
+  Speech.text= message;
+  window.speechSynthesis.speak(Speech);
+}
 
   return (
     <>
@@ -46,7 +52,7 @@ const handleClearText=()=>{
           </label>
           <textarea
             className="form-control"
-            id="exampleFormControlTextarea1"
+            id="myBox"
             rows="8"
             value={text}
             placeholder="enter the text here"
@@ -57,9 +63,10 @@ const handleClearText=()=>{
           ></textarea>
         </div>
         <div>
-        <button className="btn btn-primary" onClick={upperCase} >UpperCase</button>
+        <button className="btn btn-primary mx-1 my-1" onClick={upperCase} >UpperCase</button>
         <button className="btn btn-primary mx-1"onClick={lowerCase} >LowerCase</button>
-        <button className="btn btn-primary" onClick={handleClearText}>ClearText</button>
+        <button className="btn btn-primary mx-1 my-1" onClick={handleClearText}>ClearText</button>
+        <button className="btn btn-primary mx-1 my-1" onClick={textToSpeech}>TextSpeech</button>
         </div>
       </div>
         <div className="container my-3" style={{color:props.mode==='light'?'black':'white'}}>
